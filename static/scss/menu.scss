@@ -1,0 +1,20 @@
+@import "index";
+.order-photo{
+    flex-basis: 50%;
+}
+    .order-details{
+        flex-basis: 50%;
+        padding: 6% 2%;
+        p{
+        max-width: 80%;
+        
+       }
+       .margin{
+        margin: 20px 28%; 
+       }
+       
+    }
+
+#quantity{
+    max-width: 30px;
+}

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 5.5rem;
+  scroll-behavior: smooth;
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+section {
+  padding: 2rem 9%;
+}
+section:nth-child(even) {
+  background-color: #eee;
+}
+@media (max-width: 991px) {
+  section {
+    padding: 2rem;
+  }
+}
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 1.7rem;
+  color: #fff;
+  background: #192a56;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.8rem 3rem;
+}
+
+.subko-heading {
+  text-align: center;
+  margin: 4% 0 2%;
+  padding: 15px 0 5px;
+  background-color: gray;
+}
+.subko-heading h3 {
+  font-size: x-large;
+  font-weight: 700;
+  color: #eee;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 1rem 7%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 999;
+  -webkit-box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 991px) {
+  header {
+    padding: 1rem 2rem;
+  }
+}
+header .logo {
+  color: #192a56;
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+header .logo i {
+  color: #27ae60;
+}
+header .navbar.active {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+@media (max-width: 768px) {
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    z-index: 1004;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+header .navbar a {
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  color: #666;
+}
+header .navbar a.active, header .navbar a:hover {
+  color: #fff;
+  background: #27ae60;
+}
+@media (max-width: 768px) {
+  header .navbar a {
+    display: block;
+    padding: 1.5rem;
+    margin: 1rem;
+    font-size: 2rem;
+    background-color: #eee;
+  }
+}
+header .icons #menu-bars {
+  display: none;
+}
+@media (max-width: 768px) {
+  header .icons #menu-bars {
+    display: inline-block;
+  }
+}
+
+.restaurant {
+  text-align: center;
+  margin: 20px 0;
+}
+.restaurant h3 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.restaurant p {
+  text-align: center;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul li {
+  list-style: none;
+}
+
+.logo {
+  color: #192a56;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.logo i {
+  color: #27ae60;
+}
+
+.user {
+  padding: 7% 15px;
+  text-align: center;
+  border: #192a56 1px solid;
+  -ms-flex-preferred-size: 28%;
+      flex-basis: 28%;
+  background: #eee;
+}
+.user ul li {
+  font-size: 16px;
+}
+
+.margin {
+  margin-top: 6%;
+}
+
+h3 {
+  padding: 10px 20px;
+  font-size: 22px;
+}
+
+.user button {
+  font-size: 15px;
+  border: #192a56 1px solid;
+  border-radius: 5px;
+  padding: 5px 6px;
+  margin: 5px;
+  color: #192a56;
+  background-color: #eee;
+  max-width: 100px;
+}
+
+.order-history {
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+}
+.order-history .banner {
+  background: #eee;
+  text-align: center;
+  border: #192a56 1px solid;
+}/*# sourceMappingURL=user.css.map */
