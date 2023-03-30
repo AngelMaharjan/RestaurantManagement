@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,27 +11,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <!-- swiper cdn link -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="css/joinnow.css">
+        <link rel="stylesheet" href="{% static 'css/joinnow.css' %}">
 
     </head>
     <body>
      <div class="container-fluid">
         <header>
-            <a href="landing.html" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+            <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
           </header>
         <section class="signup">
             <div class="signup-banner">
-                <img src="images/nt.png" alt="">
+                <img src="{%static 'images/nt.png' %}" alt="">
             </div>
             <div class="form-box">
                 <h2>WELCOME</h2>
-                <form class="form">
-                    <input type="email" placeholder="Username or Email"><br>
-                    <input type="number" placeholder="Phone number"><br>
-                    <input type="text" placeholder="Address"><br>
-                    <input type="password" placeholder="Create Password"><br>
-                    <input type="password" placeholder="Confirm Password"><br> 
-                    <button class="btn"><a href="signin.html">Done</a></button><br>
+                <form class="form" method="post" action="{% url 'signupPage' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Signup"><br>
                 </form>
             </div>
         </section>

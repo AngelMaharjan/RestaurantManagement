@@ -1,3 +1,4 @@
+{%load static%}
 <!doctype html>
 <html lang="en">
 
@@ -13,28 +14,30 @@
   <!-- swiper cdn link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
   <!-- custom css -->
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 
 <body>
   <!-- header section -->
   <header>
-    <a href="index.html" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+    <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
 
     <nav class="navbar">
       <a href="#home" class="active">home</a>
-      <a href="mainmenu.html">menu</a>
+      <a href="{% url 'menuPage' %}">menu</a>
       <!-- <a href="#Drinks">Drinks</a> -->
-      <a href="about.html">about</a>
-      <a href="user.html">profile</a>
+      <a href="{% url 'aboutPage' %}">about</a>
     </nav>
 
     <div class="icons">
       <i class="fa-solid fa-bars" id="menu-bars"></i>
-      <a href="landing.html"><button class="btn">Logout</button></a>
+      <a href="{% url 'loginPage' %}"><button class="btn">Sign In</button></a>
+      <a href="{% url 'signupPage' %}"><button class="btn">Register</button></a>
+
     </div>
   </header> 
   <!-- header section  end-->
+
  <!-- Home section start -->
  <section class="home" id="home">
   <div class="max-height">
@@ -47,7 +50,7 @@
             <p>Where every bite is a delight</p>
           </div>
           <div class="image">
-            <img src="images/nt.png" class="d-block width" alt="">
+            <img src="{% static 'images/nt.png' %}" class="d-block width" alt="">
           </div>
         </div>
         <div class="swiper-slide slide">
@@ -57,7 +60,7 @@
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, ratione</p>
           </div>
           <div class="image">
-            <img src="images/home-img-1.png" class="d-block width" alt="">
+            <img src="{% static 'images/home-img-1.png' %}" class="d-block width" alt="">
           </div>
         </div>
         <div class="swiper-slide slide">
@@ -77,7 +80,7 @@
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, ratione</p>
           </div>
           <div class="image">
-            <img src="images/home-img-3.png" class="d-block width" alt="">
+            <img src="{% static 'images/home-img-3.png' %}" class="d-block width" alt="">
           </div>
         </div>
       </div>
@@ -93,131 +96,36 @@
      non ad a facere recusandae! Eius, libero?</p>
 </div>
 <!-- Home section end -->
+
 <!--menu section start  -->
 <section class="menu" id="menu">
   <h3 class="sub-heading"> Our menu</h3>
   <h1 class="heading">Popular Foods</h1>
   <div class="box-container">
+
+    {%for food in menuss %}
+
+    {% if food.category_id_id == 1 %}
+
     <div class="box">
       <div class="image">
-        <img src="images/menu-1.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
+        <img src="{{ food.item_image.url }}" alt="This is {{food.name}}">
       </div>
       <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
+        <h3>{{ food.name}}</h3>
+        <span class="price">{{food.price }}</span> 
+        <p>{{ food.desctription}}</p>   
       </div>
-    </div>
-    <div class="box">
-      <div class="image">
-        <img src="images/menu-2.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
-      </div>
-      <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
-      </div>
-    </div>
-    <div class="box">
-      <div class="image">
-        <img src="images/menu-3.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
-      </div>
-      <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
-      </div>
-    </div>
-    <div class="box">
-      <div class="image">
-        <img src="images/menu-4.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
-      </div>
-      <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
-      </div>
-    </div>
-    <div class="box">
-      <div class="image">
-        <img src="images/menu-5.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
-      </div>
-      <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
-      </div>
-    </div>
-    <div class="box">
-      <div class="image">
-        <img src="images/menu-6.jpg" alt="">
-        <a href="#" class="fas fa-heart"></a>
-      </div>
-      <div class="content">
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <h3>delicious food</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, expedita.</p>
-        
-        
-      </div>
-      </div>
-    </div>
+    </div>         
+
+    {%endif%}
+    {%endfor%}
   </div>
 
 
 </section>
 <!--menu section end  -->
+
  <!--   Drinks Start -->
  <section class="Drinks" id="Drinks">
 
@@ -225,96 +133,21 @@
   <h1 class="heading">Popular drinks</h1>
 
   <div class="box-container">
+
+    {%for drink in menuss %}
+    {%if drink.category_id_id == 2%}
     <div class="box">
       <a href="#" class="fas fa-heart"></a>
       <a href="#" class="fas fa-eye"></a>
-      <img src="images/soda-lime.png" alt="">
-      <h3>Soda-lime</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
+      <img src="{{drink.item_image.url}}" alt="">
+
+      <h3>{{drink.name}}</h3>
+      <span class="price">{{drink.price }}</span> 
+      <p>{{ drink.desctription}}</p>   
     </div>
-    <div class="box">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-eye"></a>
-      <img src="images/coktaile.jpg" alt="">
-      <h3>coktaile</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
-    </div>
-    <div class="box">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-eye"></a>
-      <img src="images/cranberry.jpg" alt="">
-      <h3>Cranberry</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
-    </div>
-    <div class="box">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-eye"></a>
-      <img src="images/colviswood.jpg" alt="">
-      <h3>colviswood</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
-    </div>
-    <div class="box">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-eye"></a>
-      <img src="images/cocktaile.jpg" alt="">
-      <h3>cocktaile</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
-    </div>
-    <div class="box">
-      <a href="#" class="fas fa-heart"></a>
-      <a href="#" class="fas fa-eye"></a>
-      <img src="images/cashew.jpg" alt="">
-      <h3>cashew</h3>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      
-      
-    </div>
+    {%endif%}
+    {%endfor%}
+
   </div>
 </section>
 <!-- Drinks End -->
@@ -344,7 +177,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
   crossorigin="anonymous"></script>
-<script src="js/main.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

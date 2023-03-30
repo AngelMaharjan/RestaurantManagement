@@ -1,3 +1,4 @@
+{%load static %}
 <!doctype html>
 <html lang="en">
 
@@ -13,19 +14,25 @@
   <!-- swiper cdn link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
   <!-- custom css -->
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mainmenu.css' %}">
+  <style>
+    .category-pick:hover{
+        background-color: #007bff;
+  color: #fff;
+    }
+  </style>
 </head>
 
 <body>
   <!-- header section -->
   <header>
-    <a href="index.html" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+    <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
 
     <nav class="navbar">
-      <a href="index.html" class="active">home</a>
+      <a href="{% url 'indexPage' %}" class="active">home</a>
       <a href="#menu">menu</a>
-      <a href="about.html">about</a>
+      <a href="{% url 'aboutPage' %}">about</a>
     </nav>
 
     <div class="icons">
@@ -38,32 +45,54 @@
   <!-- header section  end-->
   <div class="subko-heading"><h3>Menu</h3> </div>
   <div class="container">
-    <div class="d-flex justify-content-between gap-3 border">
-        <div class="order-photo border border-success border-2">
-            <img src="images/chicken.jpg" alt="" width="100%" height="100%">
+      <div class="d-flex">
+        <div class="menu-banner">
+            <img src="{% static 'images/nt.png' %}" alt="logo">
         </div>
-        <div class="order-details text-center">
-            <h4 class="fs-1">Chicken momo</h4>
-            <p class="fs-4 ma my-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus officia nihil ratione perferendis autem alias? Cum aliquam blanditiis aperiam perspiciatis veniam expedita, ipsam, quam soluta, excepturi ipsa nam placeat sapiente!</p>
-            <div class="input-group margin">
-              <span class="fs-3">quantity</span>   
-                <span class="input-group-btn mx-4">
-                    <button type="button" class="quantity-left-minus d-inline"  data-type="minus" data-field="">
-                    <span class="fa fa-minus p-2 m-2"></span>
-                     </button>
-                </span>
-                <input type="text" id="quantity" name="quantity" class="form-control input-number " value="1" min="0" max="10">
-                       <span class="input-group-btn ">
-                        <span class="input-group-btn mx-4">
-                       <button type="button" class="quantity-right-plus" data-type="plus" data-field="">
-                        <span class="fa fa-plus p-2 m-2"></span>
-                       </button>
-                      </span>
+        <div class="menu-description ">
+            <div class="menu-details">
+                <p class="fs-5 mb-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi corporis sint unde optio neque voluptate, 
+                     minus explicabo omnis sapiente labore, doloribus sint, maiores autem? Quisquam at nobis quaerat natus repellat.</p>
+
             </div>
-            <button class="btn btn-primary">Order now</button>
-        <button class="btn btn-primary ">Add to cart</button>
+            <div class="d-grid">
+               <a href="{%url 'indexPage'%}"> <div class="category-pick">
+                    <div class="image">
+                        <img src="{% static 'images/chicken.jpg' %}" alt="">
+                    </div>
+                    <div class="category">
+                        <h5>Food</h5>
+                    </div>
+                </div>  </a>
+                <div class="category-pick">
+                    <div class="image">
+                        <img src="images/chicken.jpg" alt="">
+                    </div>
+                    <div class="category">
+                        <h5>Drink</h5>
+                    </div>
+                </div>  
+                <div class="category-pick">
+                    <div class="image">
+                        <img src="images/chicken.jpg" alt="">
+                    </div>
+                    <div class="category">
+                        <h5>Desert</h5>
+                    </div>
+                </div>  
+                <div class="category-pick">
+                    <div class="image">
+                        <img src="images/chicken.jpg" alt="">
+                    </div>
+                    <div class="category">
+                        <h5>Bakery</h5>
+                    </div>
+                </div>  
+            </div>
         </div>
       </div>
+
+  </div>
   </footer>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.js" integrity="sha512-sR63/L3Slqn0OWMMafv7gmRGxkYJOcfgdN3jznwea9NYiett6R+cGdZ0t0TRHeH1gZogMyLE1oQpQ0Lc6ULKbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -73,7 +102,7 @@
     crossorigin="anonymous"></script>
    
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

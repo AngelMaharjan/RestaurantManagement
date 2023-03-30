@@ -1,3 +1,4 @@
+{%load static%}
 <!doctype html>
 <html lang="en">
 
@@ -13,19 +14,19 @@
   <!-- swiper cdn link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
   <!-- custom css -->
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
 </head>
 
 <body>
   <!-- header section -->
   <header>
-    <a href="index.html" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+    <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
 
     <nav class="navbar">
-      <a href="index.html" class="active">home</a>
-      <a href="#menu">menu</a>
-      <a href="about.html">about</a>
+      <a href="{% url 'indexPage' %}" class="active">home</a>
+      <a href="{% url 'menuPage' %}">menu</a>
+      <a href="{% url 'aboutPage' %}">about</a>
     </nav>
 
     <div class="icons">
@@ -40,32 +41,32 @@
   <section class="about-us">
     <div class="Companydetails">
         <div class="About-img">
-            <img src="{% static 'images/nt.png' %}" alt="logo">
+            <img src="images/nt.png" alt="logo">
         </div>
         <div class="Detail">
             <p>
-              The Fork & Knife is not just a restaurant, it's an experience. With a passion for culinary excellence and a commitment to sustainability, this establishment has set its sights on becoming the go-to destination for foodies and conscious consumers alike. The Fork and Knife is a hidden gem of a restaurant that's quickly making a name for itself in the culinary world. With a menu that's both innovative and classic, this establishment has something to offer for every type of palate.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis aliquam quos laudantium architecto vero! Numquam non debitis sunt, commodi eius corporis, eos fugiat saepe, odio at suscipit cumque explicabo laboriosam.
             </p>
         </div>
     </div>
     <div class="Companydetails">
         <div class="Detail">
             <p>
-              One of the standout features of The Fork & Knife is their commitment to using only the freshest, locally sourced ingredients in their dishes. From farm-to-table vegetables to sustainably raised meats, each ingredient is carefully selected to ensure that every dish is bursting with flavor and nutrition.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis aliquam quos laudantium architecto vero! Numquam non debitis sunt, commodi eius corporis, eos fugiat saepe, odio at suscipit cumque explicabo laboriosam.
             </p>
         </div>
         <div class="About-img">
-            <img src="{% static 'images/nt.png' %}" alt="logo">
+            <img src="images/Menu.png" alt="logo">
         </div>
     </div>
     <div class="Companydetails">
         <div class="Detail">
             <p>
-              The restaurant's menu is a testament to its ambition, featuring a diverse array of dishes that are as visually stunning as they are delicious. Each dish is crafted with care and precision, using only the freshest, locally sourced ingredients to create flavors that are both bold and nuanced.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis aliquam quos laudantium architecto vero! Numquam non debitis sunt, commodi eius corporis, eos fugiat saepe, odio at suscipit cumque explicabo laboriosam.
             </p>
         </div>
         <div class="About-img">
-            <img src="{% static 'images/nt.png' %}" alt="logo">
+            <img src="images/Food.jpg" alt="logo">
         </div>
     </div>
   </section>
@@ -77,7 +78,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
+  <script src="{%static 'js/main.js' %}"></script>
 </body>
 
 </html>
