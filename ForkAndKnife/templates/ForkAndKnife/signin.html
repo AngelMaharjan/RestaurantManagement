@@ -1,4 +1,3 @@
-{%load static%}
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,29 +10,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <!-- swiper cdn link -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+        <link rel="stylesheet" href="css/signin.css">
 
     </head>
     <body>
      <div class="container-fluid">
         <!-- header section -->
         <header class="signin-head">
-            <a href="{% url 'indexPage'%}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+            <a href="landing.html" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
           </header>
         <!-- header section  end-->
         <section class="signup">
             <div class="signup-banner">
-                <img src="{% static 'images/nt.png' %}" alt="">
+                <img src="images/nt.png" alt="">
             </div>
             <div class="form-box ">
                 <h2>Welcome</h2>
-                <form class="form" action="{% url 'loginPage'%}" method="post">
-                  {% csrf_token %}
-                <input type="text" name="username" placeholder="Username"><br>
-                <input type="password" name="password"  placeholder="Password"><br>
-                <a href="{% url 'password_reset'%}">Forgot password?</a><br>
-                <input type="submit" value="Login"> <br>
-                  <a href="{% url 'signupPage' %}" class="create">Don't have an account ? Create now</a><br>
+                <form class="form">
+                  <input type="email" placeholder="Username or Email"><br>
+                  <input type="password"  placeholder="Password"><br>
+                  <div class="forgot" >
+                  <a href="forgot.html" id="forgot" >Forgot password?</a><br>
+                </div>
+                  <button class="btn"><a href="index.html" >Sign In</a></a></button><br>
+                  <a href="joinnow.html" class="create">Don't have an account ? Create now</a><br>
     
                 </form>
             </div>

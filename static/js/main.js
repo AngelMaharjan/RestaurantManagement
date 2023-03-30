@@ -87,3 +87,13 @@ $(document).ready(function(){
       });
 
   });
+// for category food div clickable
+// var element = document.getElementsByClassName("category-pick"); //grab the element
+// element.onclick = function() { alert('1')
+// }
+
+// var myDiv = document.getElementsByClassName("category-pick");
+// function disp_alert()
+// {
+// alert("Hello again! This is how we" + '\n' + "add line breaks to an alert box!");
+// }
