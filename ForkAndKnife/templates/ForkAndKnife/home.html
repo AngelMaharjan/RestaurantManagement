@@ -28,9 +28,19 @@
       
       <a href="{% url 'menuPage' %}">menu</a>
       <!-- <a href="#Drinks">Drinks</a> -->
-      <a href="">about</a>
+      <a href="{% url 'aboutPage' %}">about</a>
       <a href="{% url 'profilePage' %}">profile</a>
     </nav>
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong> {{ message}} </strong> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {%endif%}
+
 
     <div class="icons">
       <i class="fa-solid fa-bars" id="menu-bars"></i>
@@ -38,6 +48,7 @@
     </div>
   </header> 
   <!-- header section  end-->
+
  <!-- Home section start -->
  <section class="home" id="home">
   <div class="max-height">

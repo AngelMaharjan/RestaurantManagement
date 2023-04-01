@@ -53,7 +53,7 @@ var swiper = new Swiper(".review-slider", {
   });
   
 //quantity
-$(document).ready(function(){
+$document.ready(function(){
 
   var quantitiy=0;
      $('.quantity-right-plus').click(function(e){
@@ -93,7 +93,13 @@ $(document).ready(function(){
 // }
 
 // var myDiv = document.getElementsByClassName("category-pick");
-// function disp_alert()
-// {
-// alert("Hello again! This is how we" + '\n' + "add line breaks to an alert box!");
-// }
+function disp_alert()
+{
+  if (document.getElementsByClassName("abc")[0].innerText =='Logout'){
+    alert("you are logged out");
+  }
+  else if(document.getElementsByClassName("abc")[0].innerText === 'Sign In'){
+    alert("you are signed in");
+    
+  }
+}

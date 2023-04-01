@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 
-from .models import Menu
+from .models import Menu, SubCategory
 # Create your views here.
 
 def index(request):
@@ -13,19 +15,22 @@ def index(request):
     return render(request, "ForkAndKnife/index.html", {'menuss': menus})
 
 def signin(request):
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, 'Login successful!')
             return redirect('homePage')
         else:
-            error_message = 'Invalid username or password.'
-            return render(request, "ForkAndKnife/signin.html", {'error_message': error_message})
-    else:
-        return render(request, 'ForkAndKnife/signin.html')
-    #return render(request, "ForkAndKnife/signin.html")
+            messages.error(request, 'Login failed. Please try again.')
+            #error_message = 'Invalid username or password.'
+            #return render(request, "ForkAndKnife/signin.html", {'error_message': error_message})
+    #else:
+     #   return render(request, 'ForkAndKnife/signin.html')
+    return render(request, "ForkAndKnife/signin.html")
 
 def signup(request):
     if request.method == 'POST':
@@ -43,10 +48,13 @@ def logoutview(request):
     logout(request)
     return redirect('indexPage')
 
+#@login_required
 def home(request):
-    menus = Menu.objects.all()
-
-    return render(request, 'ForkAndKnife/home.html',{'menuss': menus})
+    if request.user.is_authenticated:
+        menus = Menu.objects.all()
+        return render(request, 'ForkAndKnife/home.html',{'menuss': menus})
+    else:
+        return redirect('loginPage')
 
 
 def menu(request):
@@ -65,3 +73,8 @@ def profile(request):
     return render(request, 'ForkAndKnife/profile.html')
 
 
+def menuList(request):
+    obj = SubCategory.objects.all()
+    menus = Menu.objects.all()
+
+    return render(request, "ForkAndKnife/menulist.html", {'objj': obj , 'menuss': menus})

@@ -15,16 +15,30 @@
 
     </head>
     <body>
+      
      <div class="container-fluid">
         <!-- header section -->
         <header class="signin-head">
             <a href="{% url 'indexPage'%}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong> {{ message}} </strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {%endif%}
           </header>
         <!-- header section  end-->
+        
+
         <section class="signup">
+          
+          
             <div class="signup-banner">
                 <img src="{% static 'images/nt.png' %}" alt="">
             </div>
+            
             <div class="form-box ">
                 <h2>Welcome</h2>
                 <form class="form" action="{% url 'loginPage'%}" method="post">

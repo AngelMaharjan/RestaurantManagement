@@ -16,19 +16,16 @@
   <!-- custom css -->
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
   <link rel="stylesheet" href="{% static 'css/mainmenu.css' %}">
-  <style>
-    .category-pick:hover{
-        background-color: #007bff;
-  color: #fff;
-    }
-  </style>
 </head>
 
 <body>
   <!-- header section -->
   <header>
+    {% if user.is_authenticated %}
+    <a href="{% url 'homePage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+    {%else%}
     <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
-
+    {%endif%}
     <nav class="navbar">
       <a href="{% url 'indexPage' %}" class="active">home</a>
       <a href="#menu">menu</a>
@@ -56,38 +53,38 @@
 
             </div>
             <div class="d-grid">
-               <a href="{%url 'indexPage'%}"> <div class="category-pick">
-                    <div class="image">
-                        <img src="{% static 'images/chicken.jpg' %}" alt="">
-                    </div>
-                    <div class="category">
-                        <h5>Food</h5>
-                    </div>
-                </div>  </a>
-                <div class="category-pick">
-                    <div class="image">
-                        <img src="images/chicken.jpg" alt="">
-                    </div>
-                    <div class="category">
-                        <h5>Drink</h5>
-                    </div>
-                </div>  
-                <div class="category-pick">
-                    <div class="image">
-                        <img src="images/chicken.jpg" alt="">
-                    </div>
-                    <div class="category">
-                        <h5>Desert</h5>
-                    </div>
-                </div>  
-                <div class="category-pick">
-                    <div class="image">
-                        <img src="images/chicken.jpg" alt="">
-                    </div>
-                    <div class="category">
-                        <h5>Bakery</h5>
-                    </div>
-                </div>  
+              <div class="category-pick" onclick="window.location.href='{% url 'menulistPage'%}'">
+                <div class="image">
+                  <img src="{% static 'images/foods.jpg' %}" alt="">
+                </div>
+                <div class="category">
+                  <h5>Food</h5>
+                </div>
+              </div>
+            <div class="category-pick" onclick="window.location.href='{% url 'menulistPage'%}'">
+                <div class="image">
+                    <img src="{% static 'images/drinks.jpg' %}" alt="">
+                </div>
+                <div class="category">
+                    <h5>Drink</h5>
+                </div>
+            </div>  
+            <div class="category-pick" onclick="window.location.href='{% url 'menulistPage'%}'">
+                <div class="image">
+                    <img src="{% static 'images/bakery.jpg' %}" alt="">
+                </div>
+                <div class="category">
+                    <h5>Bakery</h5>
+                </div>
+            </div>  
+            <div class="category-pick" onclick="window.location.href='{% url 'menulistPage'%}'">
+                <div class="image">
+                    <img src="{% static 'images/deserts.jpg' %}" alt="">
+                </div>
+                <div class="category">
+                    <h5>Desert</h5>
+                </div>
+            </div>  
             </div>
         </div>
       </div>
