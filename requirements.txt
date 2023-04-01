@@ -1,0 +1,9 @@
+Requirements for running this project.
+
+- python installed in the device
+- django installed in the device.
+	- pip install django (run this command in cmd)
+- extract Source Code
+- navigate through the path of Souce Code in cmd
+- python manage.py runserver (run this command in cmd)
+- open the link provided in the terminal 
