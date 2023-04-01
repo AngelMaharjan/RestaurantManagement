@@ -1,0 +1,43 @@
+@import "global";
+//search-bar-Start
+
+
+.popular{
+    margin:100px auto 30px;
+    .popular-item{
+        gap: 20px;
+    
+        h3{
+            margin: 20px;
+            font-size: 36px;
+            text-align: center;
+        }
+        p{
+            margin: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .popular-image{
+            img{
+                aspect-ratio: 1/1;
+                width: 200px;
+            }
+        }
+    }
+}
+.sub-heading{
+    text-align: center;
+    color: $green;
+    font-size: 2rem ;
+    padding-top: 1rem;
+
+}
+.heading{
+    text-align: center;
+    color: $green;
+    font-size: 4rem ;
+    padding-top: 1rem;
+}
+
+
+

@@ -1,0 +1,91 @@
+@import "index";
+:root {
+    --rad: .7rem;
+    --dur: .3s;
+    --color-dark: #2f2f2f;
+    --color-light: #fff;
+    --color-brand: #57bd84;
+    --bez: cubic-bezier(0, 0, 0.43, 1.49);
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  form {
+    border-radius: var(--rad);
+  }
+  
+  input, button {
+   
+    border: 0;
+    font-size: 1.5rem;
+  }
+  
+  input[type=search] {
+    outline: 0;
+    background: var(--color-light);
+    padding: 0 1.6rem;
+    border-radius: var(--rad);
+    appearance: none;
+    transition: all var(--dur) var(--bez);
+    transition-property: width, border-radius;
+  }
+  
+  button {
+    display: none;
+    width: var(--btn-width);
+    font-weight: bold;
+    
+  }
+  
+  input:not(:-moz-placeholder-shown) {
+    width: calc(100% - var(--btn-width));
+  }
+  
+  input:not(:-ms-input-placeholder) {
+    width: calc(100% - var(--btn-width));
+  }
+  
+  input:not(:placeholder-shown) {
+    width: calc(100% - var(--btn-width));
+  }
+  input:not(:-moz-placeholder-shown) + button {
+    display: inline-block;
+  }
+  input:not(:-ms-input-placeholder) + button {
+    display: inline-block;
+  }
+  input:not(:placeholder-shown) + button {
+    display: inline-block;
+  }
+  
+  label {
+
+
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+
+.order-photo{
+    flex-basis: 50%;
+}
+    .order-details{
+        flex-basis: 50%;
+        padding: 6% 2%;
+        p{
+        max-width: 80%;
+        
+       }
+       .margin{
+        margin: 20px 28%; 
+       }
+       
+    }
+
+#quantity{
+    max-width: 30px;
+}

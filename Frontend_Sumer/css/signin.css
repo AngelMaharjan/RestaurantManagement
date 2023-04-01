@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 5.5rem;
+  scroll-behavior: smooth;
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+:root {
+  --rad: .7rem;
+  --dur: .3s;
+  --color-dark: #2f2f2f;
+  --color-light: #fff;
+  --color-brand: #57bd84;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+form {
+  border-radius: var(--rad);
+}
+
+input, button {
+  border: 0;
+  font-size: 1.5rem;
+}
+
+input[type=search] {
+  outline: 0;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-transition: all var(--dur) var(--bez);
+  -o-transition: all var(--dur) var(--bez);
+  transition: all var(--dur) var(--bez);
+  -webkit-transition-property: width, border-radius;
+  -o-transition-property: width, border-radius;
+  transition-property: width, border-radius;
+}
+
+button {
+  display: none;
+  width: var(--btn-width);
+  font-weight: bold;
+}
+
+input:not(:-moz-placeholder-shown) {
+  width: calc(100% - var(--btn-width));
+}
+
+input:not(:-ms-input-placeholder) {
+  width: calc(100% - var(--btn-width));
+}
+
+input:not(:placeholder-shown) {
+  width: calc(100% - var(--btn-width));
+}
+
+input:not(:-moz-placeholder-shown) + button {
+  display: inline-block;
+}
+
+input:not(:-ms-input-placeholder) + button {
+  display: inline-block;
+}
+
+input:not(:placeholder-shown) + button {
+  display: inline-block;
+}
+
+label {
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+section {
+  padding: 2rem 9%;
+}
+section:nth-child(even) {
+  background-color: #eee;
+}
+@media (max-width: 991px) {
+  section {
+    padding: 2rem;
+  }
+}
+
+.btn {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #fff;
+  background: #192a56;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0.8rem 3rem;
+}
+
+.subko-heading {
+  text-align: center;
+  margin: 4% 0 2%;
+  padding: 15px 0 5px;
+  background-color: gray;
+}
+.subko-heading h3 {
+  font-size: x-large;
+  font-weight: 700;
+  color: #eee;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 1rem 7%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 999;
+  -webkit-box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 991px) {
+  header {
+    padding: 1rem 2rem;
+  }
+}
+header .logo {
+  color: #192a56;
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+header .logo i {
+  color: #27ae60;
+}
+header .navbar.active {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+@media (max-width: 768px) {
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    z-index: 1004;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+header .navbar a {
+  font-size: 1.7rem;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  color: #666;
+}
+header .navbar a.active, header .navbar a:hover {
+  color: #fff;
+  background: #27ae60;
+}
+@media (max-width: 768px) {
+  header .navbar a {
+    display: block;
+    padding: 1.5rem;
+    margin: 1rem;
+    font-size: 2rem;
+    background-color: #eee;
+  }
+}
+header .icons #menu-bars {
+  display: none;
+}
+@media (max-width: 768px) {
+  header .icons #menu-bars {
+    display: inline-block;
+  }
+}
+
+.restaurant {
+  text-align: center;
+  margin: 20px 0;
+}
+.restaurant h3 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.restaurant p {
+  text-align: center;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+}
+
+.logo {
+  color: #192a56;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.logo i {
+  color: #27ae60;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.signup {
+  padding: 120px 16%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-box {
+  padding: 50px 5%;
+  background-color: rgba(220, 208, 255, 0.7);
+  width: 50%;
+}
+
+.form-box h2 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.form {
+  font-size: large;
+  padding: 10% 6%;
+  text-align: center;
+  border: black 1px solid;
+  background-color: white;
+}
+
+input {
+  background: transparent;
+  padding: 10px;
+  border-bottom: black 1px solid;
+}
+
+input::-webkit-input-placeholder {
+  text-align: center;
+  color: #d5d5d5;
+}
+
+input::-moz-placeholder {
+  text-align: center;
+  color: #d5d5d5;
+}
+
+input:-ms-input-placeholder {
+  text-align: center;
+  color: #d5d5d5;
+}
+
+input::-ms-input-placeholder {
+  text-align: center;
+  color: #d5d5d5;
+}
+
+input::placeholder {
+  text-align: center;
+  color: #d5d5d5;
+}
+
+.btn {
+  border: #192a56 1px solid;
+  border-radius: 5px;
+  padding: 2px 6px;
+  margin: 10px;
+  color: #192a56;
+  background-color: #eee;
+}
+
+.create {
+  font-size: 9px;
+  color: #cbcbcb;
+}
+
+.forgot {
+  font-size: 8px;
+  text-align: right;
+  margin: 5px 18px 0 0;
+  color: 255;
+}/*# sourceMappingURL=signin.css.map */
