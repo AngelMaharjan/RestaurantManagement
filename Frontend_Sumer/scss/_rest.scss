@@ -1,5 +1,60 @@
 @import "global";
-//search-bar-Start
+
+//home section
+.home{
+    .home-slider{
+        .slide{
+             display: flex;
+             align-items: center;
+             flex-wrap: wrap;
+             gap: 2rem;
+             padding-top: 9rem;
+            .content{
+                flex: 1 1 45rem;
+                @include mx-w768{
+                    order: 2;
+                }
+                span{
+                    color: $green;
+                    font-size: 2.5rem;
+                }
+                h3{
+                    color: $black;
+                    font-size: 7rem;
+                    @include mx-w768{
+                        font-size: 4rem;
+                    }
+                    @include mx-w991{
+                        font-size: 5rem;
+                    }
+                }
+                p{
+                    color: $gray;
+                    font-size: 2rem;
+                    padding: 0.5em;
+                    line-height: 1.5;
+                    
+                }
+                
+            }
+            .image{
+                order: 1;
+                .width{
+                    width: 82%;
+                }
+            }
+        }
+    }
+}
+.swiper-pagination-buttet-active{
+    background-color: $green;
+}
+//home section
+
+
+
+
+
 
 
 .popular{
@@ -38,6 +93,11 @@
     font-size: 4rem ;
     padding-top: 1rem;
 }
+
+
+
+
+
 
 
 
