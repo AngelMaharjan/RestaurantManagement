@@ -100,7 +100,7 @@
 <!--menu section start  -->
 <section class="menu" id="menu">
   <h3 class="sub-heading"> Our menu</h3>
-  <h1 class="heading">Popular Foods</h1>
+  <h1 class="heading"> Foods</h1>
   <div class="box-container">
 
     {%for food in menuss %}
@@ -113,7 +113,7 @@
       </div>
       <div class="content">
         <h3>{{ food.name}}</h3>
-        <span class="price">{{food.price }}</span> 
+        <span class="price">Rs. {{food.price }}</span> 
         <p>{{ food.desctription}}</p>   
       </div>
     </div>         
@@ -130,7 +130,7 @@
  <section class="Drinks" id="Drinks">
 
   <h3 class="sub-heading">our drinks</h3>
-  <h1 class="heading">Popular drinks</h1>
+  <h1 class="heading">Drinks</h1>
 
   <div class="box-container">
 
@@ -142,7 +142,7 @@
       <img src="{{drink.item_image.url}}" alt="">
 
       <h3>{{drink.name}}</h3>
-      <span class="price">{{drink.price }}</span> 
+      <span class="price">Rs. {{drink.price }}</span> 
       <p>{{ drink.desctription}}</p>   
     </div>
     {%endif%}
@@ -156,9 +156,9 @@
   <div class="box-container">
 
     <div class="box  px-2">
-      <h3>contact info</h3>
-      <a href="#">+977-9840033502</a>
-      <a href="#">sumer.maharjann@gmail.com</a>
+      <h3>Contact Info</h3>
+      <a href="#">+977-9840033009</a>
+      <a href="#">forkandknife@gmail.com</a>
       <a href="#">Naxal, KTM</a>
     </div>
 
