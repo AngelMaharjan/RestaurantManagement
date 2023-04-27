@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
@@ -31,7 +33,12 @@ class Menu(models.Model):
         return self.name
     
 
-
+# 
+# class Order(models.Model):
+    # order_id = models.AutoField;
+    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    # food_items = 
+# 
 
 
 
