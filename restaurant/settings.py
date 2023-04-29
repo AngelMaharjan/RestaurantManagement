@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
         "ForkAndKnife.apps.ForkandknifeConfig",
+        "admin_interface",
+        "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -70,6 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "restaurant.wsgi.application"
 
+AUTH_USER_MODEL = 'ForkAndKnife.Customer'
+
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -81,6 +86,13 @@ DATABASES = {
     }
 }
 
+
+SESSION_COOKIE_SECURE = True
+# Set a different cookie name for the user session
+SESSION_COOKIE_NAME = 'user_session_id'
+
+# Set a different cookie name for the admin session
+SESSION_COOKIE_NAME_ADMIN = 'admin_session_id'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -127,3 +139,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR/'Email_Files'
+
+

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 
-from .models import Menu, SubCategory
+from .models import Menu, SubCategory, Order, OrderItem
 # Create your views here.
 
 # def index(request:
@@ -73,7 +73,14 @@ def signup(request):
         form = CustomUserCreationForm()
     
     # Render the joinnow.html template with the form
-    return render(request, 'ForkAndKnife/joinnow.html', {'form': form})
+    return render(request, 'ForkAndKnife/joinnow.html', {'form': form}) 
+
+#from .models import CustomUser
+
+#def signup(request):
+
+    
+ #   return render(request, 'ForkAndKnife/joinnow.html',)
 
 
 def logoutview(request):
@@ -147,3 +154,52 @@ def menuDesertList(request):
      menus = Menu.objects.all()
     
      return render(request, "ForkAndKnife/menuDeserts.html", {'objj': obj , 'menuss': menus})
+
+#@ogin_required
+def cart(request):
+    cart_items = OrderItem.objects.filter(user=request.user)
+    context = {
+        'cart_items': cart_items,
+        'total_cost': sum(item.total_cost for item in cart_items)
+    }
+    #return render(request, 'cart.html', context)
+    return HttpResponse("This is cart....!!!")
+
+
+#@login_required
+def add_to_cart(request, product_id):
+    food = Menu.objects.get(id=product_id)
+    cart_item, created = OrderItem.objects.get_or_create(
+        user=request.user,
+        foods=food,
+        defaults={'quantity': 1, 'total_cost': food.price}
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.total_cost += food.price
+        cart_item.save()
+    messages.success(request, 'Item added to cart.')
+    return redirect('cart')
+
+
+
+#@login_required
+def place_order(request):
+    cart_items = OrderItem.objects.filter(user=request.user)
+    total_cost = sum(item.total_cost for item in cart_items)
+    order = Order.objects.create(user=request.user, total_cost=total_cost)
+    order.items.set(cart_items)
+    order.save()
+    cart_items.delete()
+    messages.success(request, 'Order placed successfully.')
+    return redirect('order_history')
+
+
+#@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user).order_by('-date_created')
+    context = {
+        'orders': orders
+    }
+    return render(request, 'order_history.html', context)
+

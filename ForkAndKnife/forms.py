@@ -29,14 +29,17 @@ class CustomUserCreationForm(UserCreationForm):
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from .models import Customer
+#from django.contrib.auth.models import User
 
 # Create a custom form that extends UserCreationForm
 class CustomUserCreationForm(UserCreationForm):
     
     # Add fields for first name and last name
-    first_name = forms.CharField(max_length=30, required=True,)
-    last_name = forms.CharField(max_length=30, required=True, )
+   # first_name = forms.CharField(max_length=30, required=True,)
+   # last_name = forms.CharField(max_length=30, required=True, )
+    address = forms.CharField(max_length=200)
+    phone_number = forms.CharField(max_length=10)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -47,13 +50,18 @@ class CustomUserCreationForm(UserCreationForm):
         self.fields['username'].help_text = None
     # Use the User model and include the new fields in the form
     class Meta:
-        model = User
-        fields = UserCreationForm.Meta.fields+('first_name', 'last_name', 'email', )  
+        #model = User
+        model = Customer
+        #fields = UserCreationForm.Meta.fields+('first_name', 'last_name', 'email', 'address', 'number' )  
+        fields = ('username', 'email', 'first_name', 'last_name', 'email', 'address', 'phone_number')
+
     # Override the save() method to set the first name and last name fields
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.first_name = self.cleaned_data.get('first_name')
-        user.last_name = self.cleaned_data.get('last_name')
+       # user.first_name = self.cleaned_data.get('first_name')
+       # user.last_name = self.cleaned_data.get('last_name')
+       # user.address = self.cleaned_data.get('address')
+       # user.number = self.cleaned_data.get('number')
         user.is_staff = self.cleaned_data.get('is_staff', False)
         
         # Save the user to the database

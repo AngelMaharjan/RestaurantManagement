@@ -21,6 +21,12 @@ urlpatterns = [
    path('orderitem/<int:id>/', views.orderItem, name="orderPage",),
 
 
+    path('cart/', views.cart, name='cart'),
+    path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('place-order/', views.place_order, name='place_order'),
+    path('order-history/', views.order_history, name='order_history'),
+
+
    ##password reset
  #  path('password_reset/', auth_views.PasswordResetView.as_view(template_name ="ForkAndKnife/forgotpass.html"),
   #       name='password_reset'),

@@ -51,6 +51,7 @@
         <div class="order-details text-center">
             <h4 class="fs-1">{{order.name}}</h4>
             <p class="fs-4 ma my-5">{{order.desctription}}</p>
+            <h2> Rs. {{order.price}}</h2>
             <div class="input-group margin">
 
               <span class="fs-3">quantity</span>   
@@ -59,18 +60,19 @@
                     <span class="fa fa-minus p-2 m-2"></span>
                      </button>
                 </span-->
-                <form>
+                <form method="POST" action="/add-to-cart/{{ product.id }}/">
                 <input type="text" id="quantity" name="quantity" method = "post" class="form-control input-number " value="1" min="0" max="10">              
-                </form>
+                
                        <!--span class="input-group-btn ">
                         <span class="input-group-btn mx-4">
                        <button type="button" class="quantity-right-plus" data-type="plus" data-field="">
                         <span class="fa fa-plus p-2 m-2"></span>
                        </button>
                       </span-->
-            </div>
+                </div>
             <!--button class="btn btn-primary">Order now</button-->
         <button class="btn btn-primary " type="submit">Add to cart</button>
+      </form>
         </div>
       </div>
   </footer>
