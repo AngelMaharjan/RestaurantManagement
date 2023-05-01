@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import CustomUserCreationForm
+from .models import Customer
+
 
 from .models import Menu, SubCategory, Order, OrderItem
 # Create your views here.
@@ -112,9 +114,19 @@ def about(request):
     # profile = get_object_or_404(User, user=user)
     # context = {'user': user, 'profile': profile}
     # return render(request, "ForkAndKnife/profile.html",context)
-
+@login_required
 def profile(request):
-    return render(request, 'ForkAndKnife/profile.html')
+    user = request.user
+    customer = Customer.objects.get(id=user.id)
+    context = {
+        'user': user,
+        'customer': customer,
+        'phone_number': customer.phone_number,
+        'address': customer.address,        
+
+    }
+
+    return render(request, 'ForkAndKnife/profile.html',context)
 
 
 def menuFoodList(request):
