@@ -1,0 +1,42 @@
+@import "var";
+.ok{
+    gap: 6rem;
+}
+.center {
+    display: block; /* This ensures the button takes up the full width of its container */
+    margin: 0 auto; /* This centers the button horizontally */
+  }
+  
+.btn-light{
+    margin-top: 2rem;
+  display: inline-block;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #192a56;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.8rem 3rem;
+}
+.dark{
+    color: $white;
+    background-color: $gray;
+}
+span{
+    font-size :20px;
+    vertical-align: middle;
+}
+.maintain{
+    gap: 2rem;
+}
+.order-summary{
+    flex-basis: 40%;
+    padding: 0 10%;
+    h3{
+        text-align: center;
+        font-size: 32px;
+    }
+    span{
+        font-size: 16px;
+    }
+
+}

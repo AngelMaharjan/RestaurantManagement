@@ -266,18 +266,6 @@ ul li {
   color: #27ae60;
 }
 
-.user {
-  padding: 7% 15px;
-  text-align: center;
-  border: #192a56 1px solid;
-  -ms-flex-preferred-size: 28%;
-      flex-basis: 28%;
-  background: #eee;
-}
-.user ul li {
-  font-size: 16px;
-}
-
 .margin {
   margin-top: 6%;
 }
@@ -287,15 +275,21 @@ h3 {
   font-size: 22px;
 }
 
-.user button {
-  font-size: 15px;
+.user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 7% 15px;
+  text-align: center;
   border: #192a56 1px solid;
-  border-radius: 5px;
-  padding: 5px 6px;
-  margin: 5px;
-  color: #192a56;
-  background-color: #eee;
-  max-width: 100px;
+  background: #eee;
+}
+.user ul li {
+  font-size: 16px;
 }
 
 .order-history {
