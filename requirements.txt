@@ -7,3 +7,12 @@ Requirements for running this project.
 - navigate through the path of Souce Code in cmd
 - python manage.py runserver (run this command in cmd)
 - open the link provided in the terminal 
+
+
+------
+
+python
+django
+pillow
+django-admin-interface
+
