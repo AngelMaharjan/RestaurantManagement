@@ -51,55 +51,40 @@ var swiper = new Swiper(".review-slider", {
     }
    
   });
-  
-//quantity
-$document.ready(function(){
 
-  var quantitiy=0;
-     $('.quantity-right-plus').click(function(e){
+  //quantity
+  $(document).ready(function(){
 
-          // Stop acting like a button
-          e.preventDefault();
-          // Get the field name
-          var quantity = parseInt($('#quantity').val());
-
-          // If is not undefined
-
-              $('#quantity').val(quantity + 1);
-
-
-              // Increment
-
-      });
-
-       $('.quantity-left-minus').click(function(e){
-          // Stop acting like a button
-          e.preventDefault();
-          // Get the field name
-          var quantity = parseInt($('#quantity').val());
-
-          // If is not undefined
-
-              // Increment
-              if(quantity>0){
-              $('#quantity').val(quantity - 1);
-              }
-      });
-
-  });
-// for category food div clickable
-// var element = document.getElementsByClassName("category-pick"); //grab the element
-// element.onclick = function() { alert('1')
-// }
-
-// var myDiv = document.getElementsByClassName("category-pick");
-function disp_alert()
-{
-  if (document.getElementsByClassName("abc")[0].innerText =='Logout'){
-    alert("you are logged out");
-  }
-  else if(document.getElementsByClassName("abc")[0].innerText === 'Sign In'){
-    alert("you are signed in");
+    var quantitiy=0;
+       $('.quantity-right-plus').click(function(e){
+            
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            
+            // If is not undefined
+                
+                $('#quantity').val(quantity + 1);
     
-  }
-}
+              
+                // Increment
+            
+        });
+    
+         $('.quantity-left-minus').click(function(e){
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            
+            // If is not undefined
+          
+                // Increment
+                if(quantity>0){
+                $('#quantity').val(quantity - 1);
+                }
+        });
+        
+    });
+  
