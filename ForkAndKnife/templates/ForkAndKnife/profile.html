@@ -22,18 +22,24 @@
         <a href="{% url 'homePage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
       </header>
     <!-- header section  end-->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Profile</button>
+      </form>
+      
     <div class="container margin">
         <div class="d-flex justify-content-between">
             <div class="user">
                 <div class="pic-about">
-                    <img src="images/nt.png" alt="" width="200px" height="200px">
-                    <h3>Username</h3>
+                    <img src="{% static 'images/nt.png' %}" alt="" width="200px" height="200px">
+                    <h3>{{ customer.username }}</h3>
                 </div>
                 <div class="details">
                     <ul>
-                        <li>Email</li>
-                        <li>Phone number</li>
-                        <li>Address</li>
+                        <li><strong>Email:</strong> {{ customer.email }}</li>
+                        <li><strong>Phone Number:</strong> {{ customer.phone_number }}</li>
+                        <li><strong>Address:</strong> {{ customer.address }}</li>
                     </ul>
                 </div>
                 <div class="orders">
