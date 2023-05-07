@@ -19,6 +19,8 @@ urlpatterns = [
    path('desert', views.menuDesertList, name="menuDesertPage"),
    #   path('menulist', views.menuList, name="menulistPage"),
    path('orderitem/<int:id>/', views.orderItem, name="orderPage",),
+   
+
 
 
     path('cart/', views.cart, name='cart'),
@@ -35,5 +37,6 @@ urlpatterns = [
    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('deleteaccount/',views.deleteAccount, name='deleteAccount'),
 
 ]

@@ -215,3 +215,34 @@ def order_history(request):
     }
     return render(request, 'order_history.html', context)
 
+
+@login_required
+def deleteAccount(request):
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('loginPage')
+    else:
+        return redirect('indexPage')
+
+
+
+
+'''def deleteAccount(request, username):
+
+    if request.method == 'DELETE':
+        try:
+            user = User.objects.get(username = username)
+            user.delete()
+            context['msg'] = 'Bye Bye'
+        except Exception as e: 
+            context['msg'] = 'Something went wrong!'
+
+    else:
+        context['msg'] = 'Request method should be "DELETE"!'
+
+    return render(request, 'deleteaccount.html', context=context) '''
+
+
+
+
+
