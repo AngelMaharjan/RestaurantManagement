@@ -108,11 +108,11 @@ def menu(request):
 def about(request):
     return render(request, 'ForkAndKnife/about.html')
 
-# def profile(request,username):
-    # user = get_object_or_404(User, username=username)
-    # profile = get_object_or_404(User, user=user)
-    # context = {'user': user, 'profile': profile}
-    # return render(request, "ForkAndKnife/profile.html",context)
+
+
+
+
+
 
 @login_required
 def profile(request):
@@ -182,33 +182,22 @@ def menuDesertList(request):
     
      return render(request, "ForkAndKnife/menuDeserts.html", {'objj': obj , 'menuss': menus})
 
-'''
-#@ogin_required
-def cart(request):
-    cart_items = OrderItem.objects.filter(user=request.user)
-    context = {
-        'cart_items': cart_items,
-        'total_cost': sum(item.total_cost for item in cart_items)
-    }
-    #return render(request, 'cart.html', context)
-    return HttpResponse("This is cart....!!!")
 
 
-#@login_required
-def add_to_cart(request, product_id):
-    food = Menu.objects.get(id=product_id)
-    cart_item, created = OrderItem.objects.get_or_create(
-        user=request.user,
-     #   foods=food,
-        defaults={'quantity': 1, 'total_cost': food.price}
-    )
-    if not created:
-        cart_item.quantity += 1
-        cart_item.total_cost += food.price
-        cart_item.save()
-    messages.success(request, 'Item added to cart.')
-    return redirect('orderPage')
-'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #@login_required
