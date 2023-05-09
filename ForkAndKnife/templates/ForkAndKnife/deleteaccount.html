@@ -1,3 +1,27 @@
-<form method="POST" action="{% url 'deleteAccount' %}">
-    <input type="submit" value="Delete Account">
-  </form>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Delete Account</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <header>
+            <a href="{% url 'homePage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+          </header>
+        <section class="signup">
+            <div class="form-box">
+                <h2>Delete Account</h2>
+                <form method="POST" action="{% url 'deleteAccount' username=request.user.username %}">
+                    {% csrf_token %}
+                    <p>Are you sure you want to delete your account?</p>
+                    <button class="btn" type="submit">Delete</button>
+                </form>
+                <p>{{msg}}</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

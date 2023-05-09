@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP</title>
+    <script src="https://kit.fontawesome.com/d0f573286e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/change.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <header>
+            <a href="{% url 'homePage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+        </header>
+        <section class="signup">
+            <div class="form-box">
+                <h2>Reset password</h2>
+                <form class="form" method="POST">
+                    {% csrf_token %}
+                    <div class="new">
+                        <p>OLD PASSWORD</p>
+                        <input type="password" class="border" name="old_password" placeholder="password">
+                    </div>
+                    <div class="new">
+                        <p>NEW PASSWORD</p>
+                        <input type="password" class="border" name="new_password1" placeholder="password">
+                    </div>
+                    <div class="new">
+                        <p>CONFIRM PASSWORD</p>
+                        <input type="password" class="border" name="new_password2" placeholder="password">
+                    </div>
+                    
+                    <button class="btn" type="submit">submit</button><br>
+                
+    
+                </form>
+            </div>
+        </section>
+
+     </div>
+</body>
+</html>

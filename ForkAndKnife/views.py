@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 from .models import Customer
+from django.contrib.auth import update_session_auth_hash, authenticate, login
+from django.contrib.auth import get_user_model
 
 
 from .models import Menu, SubCategory, Order, OrderItem
@@ -216,31 +218,51 @@ def order_history(request):
     return render(request, 'order_history.html', context)
 
 
-@login_required
+'''@login_required
 def deleteAccount(request):
     if request.method == 'POST':
         request.user.delete()
         return redirect('loginPage')
     else:
-        return redirect('indexPage')
+        return redirect('indexPage')'''
 
 
 
 
-'''def deleteAccount(request, username):
+User = get_user_model()
 
-    if request.method == 'DELETE':
-        try:
-            user = User.objects.get(username = username)
-            user.delete()
-            context['msg'] = 'Bye Bye'
-        except Exception as e: 
-            context['msg'] = 'Something went wrong!'
-
+@login_required
+def deleteAccount(request, username):
+    if request.method == 'POST':
+        user = User.objects.get(username=username)
+        user.delete()
+        return redirect('homePage')
     else:
-        context['msg'] = 'Request method should be "DELETE"!'
+        return render(request, 'ForkAndKnife/deleteaccount.html')
 
-    return render(request, 'deleteaccount.html', context=context) '''
+
+
+@login_required
+def reset_password(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        user = authenticate(username=request.user.username, password=old_password)
+        if user is not None:
+            if new_password1 == new_password2:
+                user.set_password(new_password1)
+                user.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password was successfully updated!')
+                return redirect('homePage')
+            else:
+                messages.error(request, 'The new passwords did not match.')
+        else:
+            messages.error(request, 'Your old password was incorrect.')
+    return render(request, 'ForkAndKnife/reset.html')
+
 
 
 
