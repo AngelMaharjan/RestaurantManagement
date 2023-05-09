@@ -70,3 +70,10 @@ class CustomUserCreationForm(UserCreationForm):
         return user
 
 
+
+from .models import OrderItem
+
+class CartItemForm(forms.ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = ['quantity']

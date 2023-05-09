@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>
+            Update Cart
+        </title>
+    </head>
+    <body>
+<h1>Update Cart Item</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--button type="submit" action="{% url 'updateCart' id=id%}">Update</button-->
+  </form>
+  </body>
+  </html>

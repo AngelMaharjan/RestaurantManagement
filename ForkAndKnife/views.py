@@ -6,12 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import CustomUserCreationForm
-from .models import Customer
-from django.contrib.auth import update_session_auth_hash, authenticate, login
-from django.contrib.auth import get_user_model
 
-
-from .models import Menu, SubCategory, Order, OrderItem
+from .models import Menu, SubCategory,Customer, OrderItem, Order
 # Create your views here.
 
 # def index(request:
@@ -100,6 +96,7 @@ def home(request):
     else:
         return redirect('loginPage') '''
 
+@login_required
 def home(request):
     menus = Menu.objects.all()
     return render(request, 'ForkAndKnife/home.html',{'menuss': menus})
@@ -116,6 +113,7 @@ def about(request):
     # profile = get_object_or_404(User, user=user)
     # context = {'user': user, 'profile': profile}
     # return render(request, "ForkAndKnife/profile.html",context)
+
 @login_required
 def profile(request):
     user = request.user
@@ -130,7 +128,6 @@ def profile(request):
 
     return render(request, 'ForkAndKnife/profile.html',context)
 
-
 def menuFoodList(request):
     obj = SubCategory.objects.all()
     menus = Menu.objects.all()
@@ -138,16 +135,32 @@ def menuFoodList(request):
     return render(request, "ForkAndKnife/menuFood.html", {'objj': obj , 'menuss': menus})
 
 def orderItem(request, id):
-    #menus = Menu.objects.all()
     order = get_object_or_404(Menu, id = id)
-    #order = Menu.objects.get(id=id)
-    return render(request, "ForkAndKnife/orderMenu.html", { 'order': order})
 
-# def orderItem(request):
-    # return render(request, "ForkAndKnife/orderMenu.html")
-# 
-def menuList(request):
-    return HttpResponse("hello")
+    if request.method == "POST":
+        quantity = request.POST.get('quantity')
+        user = request.user
+        #order, created = Order.objects.get_or_create(user=request.user)
+        order_item = OrderItem( quantity=quantity, item_id=order.id, user=user)
+        order_item.save()
+       # print(order_item.get_total)
+       # order.items.add(order_item)
+        #order.total += order_item.price
+        #order.save()
+
+
+        #order_item = OrderItem(prod= 'prod',quantity='quantity', id = 'idd',)
+      #  order.save()
+        #return HttpResponse(user)
+
+        return redirect('menuPage')
+
+
+    return render(request, "ForkAndKnife/orderMenu.html", { 'order': order})  
+
+
+
+
 
 def menuDrinkList(request):
      obj = SubCategory.objects.all()
@@ -169,6 +182,7 @@ def menuDesertList(request):
     
      return render(request, "ForkAndKnife/menuDeserts.html", {'objj': obj , 'menuss': menus})
 
+'''
 #@ogin_required
 def cart(request):
     cart_items = OrderItem.objects.filter(user=request.user)
@@ -185,7 +199,7 @@ def add_to_cart(request, product_id):
     food = Menu.objects.get(id=product_id)
     cart_item, created = OrderItem.objects.get_or_create(
         user=request.user,
-        foods=food,
+     #   foods=food,
         defaults={'quantity': 1, 'total_cost': food.price}
     )
     if not created:
@@ -193,41 +207,190 @@ def add_to_cart(request, product_id):
         cart_item.total_cost += food.price
         cart_item.save()
     messages.success(request, 'Item added to cart.')
-    return redirect('cart')
-
+    return redirect('orderPage')
+'''
 
 
 #@login_required
 def place_order(request):
-    cart_items = OrderItem.objects.filter(user=request.user)
-    total_cost = sum(item.total_cost for item in cart_items)
-    order = Order.objects.create(user=request.user, total_cost=total_cost)
-    order.items.set(cart_items)
-    order.save()
-    cart_items.delete()
-    messages.success(request, 'Order placed successfully.')
-    return redirect('order_history')
-
+    if request.method== 'POST':
+        address = request.POST.get('address')
+        #number = request.POST.get('number')
+        cart_items = OrderItem.objects.filter(user=request.user)
+        total_quantity = 0
+        for i in cart_items:
+            total_quantity += i.quantity
+        total = total_quantity
+        total_cost = sum(item.get_total for item in cart_items)
+        order = Order.objects.create(user=request.user,delivery_address=address, quantity=total,
+                                     total_price = total_cost )
+#        order = Order(delivery_address=address, quantity=total,
+ #                      total_price = total_cost )
+       # order.items.set(cart_items)
+        order.save()
+      #  cart_items.delete()
+        messages.success(request, 'Order placed successfully.')
+        return redirect('homePage')
 
 #@login_required
 def order_history(request):
-    orders = Order.objects.filter(user=request.user).order_by('-date_created')
+    orders = Order.objects.filter(user=request.user).order_by('-date_ordered')
     context = {
-        'orders': orders
+        'orders': orders,
+       # 'item' : OrderItem
     }
-    return render(request, 'order_history.html', context)
+    return render(request, 'ForkAndKnife/orderhistory.html', context) 
+
+# 
+
+@login_required
+def cart(request):
+    items = OrderItem.objects.filter(user=request.user)
+    
+   # total_price = sum(item.get_total() for item in items)
+    #name = items.item_id.name
+    #context = {'items': items}
+   # return HttpResponse(items)
+    total_price = 0
+    for i in items:
+        total_price += i.get_total
+    total = total_price
+
+    delivery = total + 100
+        
+    return render(request, 'ForkAndKnife/newCart.html', {'context': items, 'total' : total , 'delivery' : delivery})
+    
+## code for updating items in Cart
+@login_required
+def update_cart(request, id):
+    # get the item id and new quantity from the POST data
+    id = str(id)
+    quantity = int(request.POST['quantity'])
+   # update the item quantity in the cart
+    cart_item = OrderItem.objects.filter(id=id).first()
+    print(f"quantiy is : {cart_item}")
+    try:
+        cart_item = OrderItem.objects.get(id=id)
+    except OrderItem.DoesNotExist:
+        print(f"No OrderItem found with item_id={id}")
+
+    if cart_item is not None:
+        #cart_item.quantity = quantity
+        #cart_item.save()
+        cart_item.quantity = quantity
+        print(f"Quantity updated to {quantity}")
+        cart_item.save()
+        print("Item saved to database")
 
 
-'''@login_required
-def deleteAccount(request):
+    return redirect('cartPage')
+
+
+@login_required
+def delete_cart(request, id):
+    # Get the item id
+    item_id = int(id)
+    
+    # Get the order item to be deleted
+    order_item = OrderItem.objects.get(id=item_id)
+    
+    # Delete the order item from the cart
+    order_item.delete()
+    
+    # Redirect to the cart page
+    return redirect('cartPage')
+
+
+'''
+
+@login_required
+def delete_account(request):
     if request.method == 'POST':
+        # Delete the user's data
         request.user.delete()
-        return redirect('loginPage')
-    else:
-        return redirect('indexPage')'''
+        # Log the user out
+        logout(request)
+        messages.success(request, 'Your account has been deleted.')
+        return redirect('indexPage')
+    return render(request, 'ForkAndKnife/deleteUser.html')
+
+
+def generate_bill(request, order_id):
+    # retrieve the order from the database
+    order = Order.objects.get(id=order_id)
+
+    # render the bill template with the relevant data
+    bill_template = 'ForkAndKnife/bill.html'
+    context = {'order': order}
+    html = render(request, bill_template, context)
+
+    # return the rendered template as an HTTP response
+    response = HttpResponse(html, content_type='text/html')
+    response['Content-Disposition'] = f'attachment; filename=Bill-{order_id}.html'
+    return response
+'''
+
+from django.template.loader import get_template
+from django.conf import settings
+from io import BytesIO
+from reportlab.pdfgen import canvas
+
+def generate_bill(request, order_id):
+    order = Order.objects.get(id=order_id)
+    items = order.items.all()
+   # item = OrderItem.objects.filter(user=request.user)
+
+   # quantity = order.quantity
+
+    # get the template
+    template = get_template('ForkAndKnife/bill.html')
+    context = {'order': order, 'items': items,}
+
+    # create a file-like buffer to receive PDF data
+    buffer = BytesIO()
+
+    # create the PDF object, using the buffer as its "file."
+    p = canvas.Canvas(buffer)
+
+    # draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    # http://www.reportlab.com/docs/reportlab-userguide.pdf
+    p.drawString(100, 750, "Order Invoice")
+    p.drawString(100, 700, "Order ID: {}".format(order.id))
+    p.drawString(100, 650, "User: {}".format(order.user.username))
+    p.drawString(100, 600, "Delivery Address: {}".format(order.delivery_address))
+    p.drawString(100, 550, "Payment Method: {}".format(order.payment_method))
+
+    # loop through the items and draw them on the PDF
+    y = 500
+    for item in items:
+        p.drawString(100, y, item.name)
+       # p.drawString(200, y, str(item.quantity))
+        p.drawString(300, y, str(item.price))
+      #  p.drawString(400, y, str(item.get_total()))
+        y -= 50
+
+    p.drawString(300, y-30, "Total Quantity: {}".format(order.quantity))
+
+    p.drawString(300, y-50, "Total: {}".format(order.total_price))
+
+    # close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # get the value of the BytesIO buffer and write it to the response.
+    pdf = buffer.getvalue()
+    buffer.close()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="invoice.pdf"'
+    response.write(pdf)
+    return response
 
 
 
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth import update_session_auth_hash, authenticate, login
 
 User = get_user_model()
 
@@ -262,9 +425,3 @@ def reset_password(request):
         else:
             messages.error(request, 'Your old password was incorrect.')
     return render(request, 'ForkAndKnife/reset.html')
-
-
-
-
-
-

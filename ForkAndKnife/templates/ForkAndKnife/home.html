@@ -30,6 +30,8 @@
       <!-- <a href="#Drinks">Drinks</a> -->
       <a href="{% url 'aboutPage' %}">about</a>
       <a href="{% url 'profilePage' %}">profile</a>
+      <a href="{% url 'cartPage' %}">My Cart</a>
+
     </nav>
     {% if messages %}
     {% for message in messages %}
@@ -43,6 +45,7 @@
 
 
     <div class="icons">
+
       <i class="fa-solid fa-bars" id="menu-bars"></i>
       <a href="{% url 'logoutPage' %}"><button class="btn">Logout</button></a>
     </div>

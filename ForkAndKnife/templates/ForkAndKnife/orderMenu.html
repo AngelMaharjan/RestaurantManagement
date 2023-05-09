@@ -60,9 +60,10 @@
                     <span class="fa fa-minus p-2 m-2"></span>
                      </button>
                 </span-->
-                <form method="POST" action="/add-to-cart/{{ product.id }}/">
+                <!--form method="POST" action="/add-to-cart/{{order.id}}/"-->
+                <form method="POST" action="">
                 <input type="text" id="quantity" name="quantity" method = "post" class="form-control input-number " value="1" min="0" max="10">              
-                
+                {% csrf_token %}
                        <!--span class="input-group-btn ">
                         <span class="input-group-btn mx-4">
                        <button type="button" class="quantity-right-plus" data-type="plus" data-field="">

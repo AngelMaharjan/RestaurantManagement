@@ -37,8 +37,9 @@
       {%endif%}
       <a href="{% url 'menuPage' %}">menu</a>
       <a href="{% url 'aboutPage' %}">about</a>
+
       {% if user.is_authenticated %}
-      <a href="{% url 'profilePage %'}">profile</a>
+      <a href="{% url 'profilePage' %}">profile</a>
       {%endif%}
       
     </nav>
