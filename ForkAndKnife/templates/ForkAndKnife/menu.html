@@ -32,7 +32,7 @@
       {%else%}
       <a href="{% url 'indexPage' %}" class="logo">Home</a>
       {%endif%}
-      <a href="#menu">menu</a>
+      <a href="" class="active">menu</a>
       <a href="{% url 'aboutPage' %}">about</a>
       {% if user.is_authenticated %}
       <a href="{% url 'profilePage' %}">Profile</a>

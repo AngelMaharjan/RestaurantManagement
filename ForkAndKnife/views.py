@@ -64,9 +64,12 @@ def signup(request):
         if form.is_valid():
             # Save the user to the database
             form.save()
-            
+            messages.success(request, 'Signup Successfull')
             # Redirect to the login page
             return redirect('loginPage')
+        else:
+            messages.error(request, 'Signup Failed..!!')
+
     
     # If the request method is not POST, display an empty form
     else:
@@ -82,10 +85,11 @@ def signup(request):
     
  #   return render(request, 'ForkAndKnife/joinnow.html',)
 
-
+@login_required
 def logoutview(request):
     logout(request)
-    return redirect('indexPage')
+    messages.success(request, 'Logged Out Successfully..!!')
+    return redirect('loginPage')
 
 '''
 #@login_required
@@ -108,11 +112,11 @@ def menu(request):
 def about(request):
     return render(request, 'ForkAndKnife/about.html')
 
-
-
-
-
-
+# def profile(request,username):
+    # user = get_object_or_404(User, username=username)
+    # profile = get_object_or_404(User, user=user)
+    # context = {'user': user, 'profile': profile}
+    # return render(request, "ForkAndKnife/profile.html",context)
 
 @login_required
 def profile(request):
@@ -134,6 +138,7 @@ def menuFoodList(request):
 
     return render(request, "ForkAndKnife/menuFood.html", {'objj': obj , 'menuss': menus})
 
+@login_required
 def orderItem(request, id):
     order = get_object_or_404(Menu, id = id)
 
@@ -152,8 +157,9 @@ def orderItem(request, id):
         #order_item = OrderItem(prod= 'prod',quantity='quantity', id = 'idd',)
       #  order.save()
         #return HttpResponse(user)
+        messages.success(request, 'Item added into cart..!!')
 
-        return redirect('menuPage')
+        return redirect('homePage')
 
 
     return render(request, "ForkAndKnife/orderMenu.html", { 'order': order})  
@@ -182,25 +188,36 @@ def menuDesertList(request):
     
      return render(request, "ForkAndKnife/menuDeserts.html", {'objj': obj , 'menuss': menus})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''
+#@ogin_required
+def cart(request):
+    cart_items = OrderItem.objects.filter(user=request.user)
+    context = {
+        'cart_items': cart_items,
+        'total_cost': sum(item.total_cost for item in cart_items)
+    }
+    #return render(request, 'cart.html', context)
+    return HttpResponse("This is cart....!!!")
 
 
 #@login_required
+def add_to_cart(request, product_id):
+    food = Menu.objects.get(id=product_id)
+    cart_item, created = OrderItem.objects.get_or_create(
+        user=request.user,
+     #   foods=food,
+        defaults={'quantity': 1, 'total_cost': food.price}
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.total_cost += food.price
+        cart_item.save()
+    messages.success(request, 'Item added to cart.')
+    return redirect('orderPage')
+'''
+
+
+@login_required
 def place_order(request):
     if request.method== 'POST':
         address = request.POST.get('address')
@@ -217,9 +234,12 @@ def place_order(request):
  #                      total_price = total_cost )
        # order.items.set(cart_items)
         order.save()
-      #  cart_items.delete()
+        cart_items.delete()
         messages.success(request, 'Order placed successfully.')
         return redirect('homePage')
+    else:
+        messages.error(request, 'Unable to place order..!!')
+
 
 #@login_required
 def order_history(request):
@@ -246,7 +266,7 @@ def cart(request):
     total = total_price
 
     delivery = total + 100
-        
+
     return render(request, 'ForkAndKnife/newCart.html', {'context': items, 'total' : total , 'delivery' : delivery})
     
 ## code for updating items in Cart

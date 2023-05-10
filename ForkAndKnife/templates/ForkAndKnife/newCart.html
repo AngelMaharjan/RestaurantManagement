@@ -25,9 +25,10 @@
 
     <nav class="navbar">
       <a href="{% url 'homePage'%}">home</a>
-      <a href="{% url 'menuPage' %}" class="active">menu</a>
+      <a href="{% url 'menuPage' %}" >menu</a>
       <a href="{% url 'aboutPage' %}">about</a>
       <a href="{% url 'profilePage' %}">profile</a>
+      <a href="{% url 'cartPage' %}" class="active">My cart</a>
 
     </nav>
 
@@ -133,7 +134,7 @@
                     <span>Rs.{{delivery}}</span>
                 </div>
             </div>
-            <br>
+            <br><br>
              <!-- item calculation -->
              <div class="text-center">
 
@@ -143,6 +144,20 @@
 
                  <p style="color: red">Only Cash on Delivery Available. *</p>
 
+                 <!--update and delete -->
+                 {%for items in context%}
+                 <form method="post" action="{% url 'updateCart' id=items.id %}">
+                  {% csrf_token %}
+                  <p>{{ items.item.name}}</p>
+                  <input type="number" name="quantity" value="{{ items.quantity }}">
+                  <button type="submit">Update</button>
+                  </form>
+                  <form method="POST" action="{% url 'deleteCart' id=items.id %}">
+                  {% csrf_token %}
+                  <button type="submit">Delete</button>
+                </form>
+                {%endfor%}
+                
              </div>
              {% else %}
              <h1 style="text-align: center; ">Your cart is empty.</h1>
