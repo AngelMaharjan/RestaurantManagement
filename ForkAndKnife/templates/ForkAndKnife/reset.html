@@ -14,10 +14,22 @@
     <div class="container-fluid">
         <header>
             <a href="{% url 'homePage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
+            {% if messages %}
+            {% for message in messages %}
+        
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong> {{ message}} </strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {%endif%}
         </header>
+        
         <section class="signup">
             <div class="form-box">
                 <h2>Reset password</h2>
+
+
                 <form class="form" method="POST">
                     {% csrf_token %}
                     <div class="new">
