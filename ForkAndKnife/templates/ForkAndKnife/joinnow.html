@@ -28,13 +28,16 @@
                 <form class="form" method="post" action="{% url 'signupPage' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <!--input type="text" placeholder="Username" name="username"><br>
-                    <input type="email" placeholder="Email" name="email"><br>
-                    <input type="number" placeholder="Phone number" name="number"><br>
-                    <input type="text" placeholder="Address" name="address"><br>
-                    <input type="password" placeholder="Create Password" name="pass1"><br>
-                    <input type="password" placeholder="Confirm Password" name="pass2"><br--> 
-
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var phoneNumberInput = document.getElementById("id_phone_number");
+                    
+                        phoneNumberInput.addEventListener("input", function() {
+                            var numericValue = this.value.replace(/\D/g, "");
+                            this.value = numericValue;
+                        });
+                    });
+                    </script>
 
                     <input type="submit" value="Signup"><br>
                 </form>
