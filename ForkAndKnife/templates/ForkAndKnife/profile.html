@@ -43,15 +43,9 @@
                     </ul>
                 </div>
                 <div class="orders">
-<<<<<<< HEAD
-                    <button><a href="#">Order History</a></button>
-                    <button><a href="{% url 'reset_password' %}">Change Password</a></button>
-                    <button><a href="{% url 'deleteAccount' username=request.user.username %}">Delete Account</a></button>
-=======
                     <button><a href="{% url 'order_history' %}">Order History</a></button>
-                    <button><a href="{% url 'reset_password' %}">Reset Password</a></button>
+                    <button><a href="{% url 'reset_password' %}">Change Password</a></button>
                     <button><a href=" {% url 'deleteAccount' username=request.user.username %} ">Delete Account</a></button>
->>>>>>> b20137acf3cf191f0d08f5f5436a8d0750484675
                 </div>
             </div>
             <div class="order-history">
