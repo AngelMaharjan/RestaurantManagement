@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bill</title>
+</head>
+<body>
+	<h1>Bill</h1>
+	<hr>
+	<h2>Customer Details</h2>
+	<p>Name: {{ order.user.first_name }} {{ order.user.last_name }}</p>
+	<p>Email: {{ order.user.email }}</p>
+	<p>Delivery Address: {{ order.delivery_address }}</p>
+	<p>Payment Method: {{order.payment_method}}</p>
+	<hr>
+	<h2>Order Details</h2>
+	<ul>
+    <li><h3> Name      - Price</h3></li>
+		{% for item in order.items.all %}
+			<li>{{ item.name }} - {{ item.quantity }} - {{ item.price }}</li>
+		{% endfor %}
+	</ul>
+	<p>Total Cost: {{ order.total_price }}</p>
+</body>
+</html>

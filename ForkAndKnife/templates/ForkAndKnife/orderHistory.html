@@ -12,17 +12,34 @@
 					<p><strong>Order ID:</strong> {{ order.id }}</p>
 					<p><strong>Items:</strong></p>
 					<ul>
+
+						<li> <h5>Name         -  Quantity        - Price</h5></li>
 						{% for item in order.items.all %}
-							<li>{{ item.product.name }} - {{ item.quantity }} - {{ item.total_cost }}</li>
+							<li>{{ item.name }} - {{ item.quantity }} - {{ item.price }}</li>
 						{% endfor %}
 					</ul>
-					<p><strong>Total Cost:</strong> {{ order.total_cost }}</p>
-					<p><strong>Date:</strong> {{ order.date_created }}</p>
+					<p><strong>Total Cost:</strong> {{ order.total_price }}</p>
+					<p><strong>Date:</strong> {{ order.date_ordered }}</p>
+					{%if order.complete == 1%}
+					<a href="{% url 'generateBill' order_id=order.id %}"><button style="color: green"> Generate Bill</button></a>
+					{%else%}
+					<a><button style="color: red" id="btn" onclick="generateBill()"> Generate Bill</button></a>
+					
+
+					{% endif%}
 				</li>
 			{% endfor %}
 		</ul>
 	{% else %}
 		<p>You have not placed any orders yet.</p>
 	{% endif %}
+	<script>
+		function generateBill() {
+  // code to generate the bill PDF
+  
+  // show an alert dialog box
+  alert("Bill is not readyy...!!!, Order must be completed first.");
+}
+	</script>
 </body>
 </html>

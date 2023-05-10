@@ -29,9 +29,16 @@
     <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
     {%endif%}
     <nav class="navbar">
-      <a href="{% url 'indexPage'%}">home</a>
+      {% if user.is_authenticated %}
+<a href="{% url 'homePage'%}">home</a>
+{%else%}
+<a href="{% url 'indexPage'%}">home</a>
+{%endif%}
       <a href="{% url 'menuPage'%}" class="active">menu</a>
       <a href="{% url 'aboutPage'%}">about</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'profilePage' %}">Profile</a>
+      {%endif%}
     </nav>
 
     <div class="icons">
@@ -97,13 +104,15 @@
     <div class="row">
       {%for food in menuss %}
       {%if food.sub_category_id_id == 7 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
           <div class="col">
               <p class="fs-3">{{ food.name}}</p>
               <p class="fs-4">Rs. {{ food.price}}</p>
           </div>
-      </div>
+      </div> </a>
   </div>
   {%endif%}
   {%endfor%}
@@ -111,56 +120,21 @@
       
   </div>
   </div>
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     <div class="row">
       {%for food in menuss %}
       {%if food.sub_category_id_id == 8 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
           <div class="col">
               <p class="fs-3">{{ food.name}}</p>
               <p class="fs-4">Rs. {{ food.price}}</p>
           </div>
-      </div>
+      </div> </a>
   </div>
   {%endif%}
   {%endfor%}

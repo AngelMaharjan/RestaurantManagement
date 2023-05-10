@@ -29,9 +29,16 @@
     <a href="{% url 'indexPage' %}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
     {%endif%}
     <nav class="navbar">
+      {% if user.is_authenticated %}
+      <a href="{% url 'homePage'%}">home</a>
+      {%else%}
       <a href="{% url 'indexPage'%}">home</a>
+      {%endif%}
       <a href="{% url 'menuPage'%}" class="active">menu</a>
       <a href="{% url 'aboutPage'%}">about</a>
+      {% if user.is_authenticated %}
+<a href="{% url 'profilePage' %}">Profile</a>
+{%endif%}
     </nav>
 
     <div class="icons">
@@ -79,6 +86,7 @@
             <hr class="mb-5">
         <!-- Momo lists shows -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
+              
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Momo</button>
   </li>
@@ -91,19 +99,30 @@
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="cdrinks-tab" data-bs-toggle="tab" data-bs-target="#cdrinks" type="button" role="tab" aria-controls="cdrinks" aria-selected="false">Pasta</button>
   </li>
+
+  <!--li class="nav-item" role="presentation">
+    <button class="nav-link" id="laphing-tab" data-bs-toggle="tab" data-bs-target="#laphing" type="button" role="tab" aria-controls="laphing" aria-selected="false">Laphing</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="noodle-tab" data-bs-toggle="tab" data-bs-target="#noodle" type="button" role="tab" aria-controls="noodle" aria-selected="false">Noodles</button>
+  </li-->
 </ul>
+
 <div class="tab-content" id="myTabContent">
+  <!--momo section-->
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="row">
       {%for food in menuss %}
       {%if food.sub_category_id_id == 1 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
           <div class="col">
               <p class="fs-3">{{ food.name}}</p>
               <p class="fs-4">Rs. {{ food.price}}</p>
           </div>
-      </div>
+      </div> </a>
   </div>
   {%endif%}
   {%endfor%}
@@ -111,18 +130,20 @@
       
   </div>
   </div>
-
+  <!--pizza-->
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="row">
       {%for food in menuss %}
       {%if food.sub_category_id_id == 5 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
           <div class="col">
               <p class="fs-3">{{ food.name}}</p>
               <p class="fs-4">Rs. {{ food.price}}</p>
-          </div>
-      </div>
+          </div> 
+      </div> </a>
   </div>
   {%endif%}
   {%endfor%}
@@ -130,18 +151,41 @@
       
   </div>
   </div>
-
+<!--burger-->
   <div class="tab-pane fade" id="cdrinks" role="tabpanel" aria-labelledby="cdrinks-tab">
     <div class="row">
       {%for food in menuss %}
       {%if food.sub_category_id_id == 6 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
           <div class="col">
               <p class="fs-3">{{ food.name}}</p>
               <p class="fs-4">Rs. {{ food.price}}</p>
           </div>
-      </div>
+      </div> </a>
+  </div>
+  {%endif%}
+  {%endfor%}
+                                    
+      
+  </div>
+  </div>
+<!--pasta-->
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="row">
+      {%for food in menuss %}
+      {%if food.sub_category_id_id == 3 %}
+      <div class="col border m-3">
+        <a href="{% url 'orderPage' id=food.id %}">
+        <div class="row py-2 ">
+          <div class="col-7"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></div>
+          <div class="col">
+              <p class="fs-3">{{ food.name}}</p>
+              <p class="fs-4">Rs. {{ food.price}}</p>
+          </div>
+      </div> </a>
   </div>
   {%endif%}
   {%endfor%}
@@ -150,24 +194,44 @@
   </div>
   </div>
 
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-    <div class="row">
-      {%for food in menuss %}
-      {%if food.sub_category_id_id == 3 %}
-      <div class="col border m-3"><div class="row py-2 ">
-          <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
-          <div class="col">
-              <p class="fs-3">{{ food.name}}</p>
-              <p class="fs-4">Rs. {{ food.price}}</p>
-          </div>
-      </div>
-  </div>
-  {%endif%}
-  {%endfor%}
-                                    
-      
-  </div>
-  </div>
+<!--laphing
+<div class="tab-pane fade" id="laphing-tab" role="tabpanel" aria-labelledby="laphing-tab">
+  <div class="row">
+    {%for food in menuss %}
+    {%if food.sub_category_id_id == 11 %}
+    <div class="col border m-3"><div class="row py-2 ">
+        <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+        <div class="col">
+            <p class="fs-3">{{ food.name}}</p>
+            <p class="fs-4">Rs. {{ food.price}}</p>
+        </div>
+    </div>
+</div>
+{%endif%}
+{%endfor%}                                
+</div>
+</div -->
+
+<!--noodle
+<div class="tab-pane fade" id="noodle-tab" role="tabpanel" aria-labelledby="noodle-tab">
+  <div class="row">
+    {%for food in menuss %}
+    {%if food.sub_category_id_id == 12 %}
+    <div class="col border m-3"><div class="row py-2 ">
+        <div class="col-7"><a href="{% url 'orderPage' id=food.id %}"><img src="{{ food.item_image.url }}" width="100px" height="100px" alt="momo"></a></div>
+        <div class="col">
+            <p class="fs-3">{{ food.name}}</p>
+            <p class="fs-4">Rs. {{ food.price}}</p>
+        </div>
+    </div>
+</div>
+{%endif%}
+{%endfor%}
+                                  
+    
+</div>
+</div-->
+
 </div>
             
         </div>

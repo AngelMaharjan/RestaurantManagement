@@ -30,14 +30,14 @@ class CustomUserCreationForm(UserCreationForm):
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import Customer
+#from django.core.validators import RegexValidator
+#import re
+
 #from django.contrib.auth.models import User
 
 # Create a custom form that extends UserCreationForm
 class CustomUserCreationForm(UserCreationForm):
-    
-    # Add fields for first name and last name
-   # first_name = forms.CharField(max_length=30, required=True,)
-   # last_name = forms.CharField(max_length=30, required=True, )
+
     address = forms.CharField(max_length=200)
     phone_number = forms.CharField(max_length=10)
 
@@ -70,3 +70,10 @@ class CustomUserCreationForm(UserCreationForm):
         return user
 
 
+
+from .models import OrderItem
+
+class CartItemForm(forms.ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = ['quantity']
