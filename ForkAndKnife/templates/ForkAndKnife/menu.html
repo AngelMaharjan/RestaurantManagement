@@ -34,9 +34,11 @@
       {%endif%}
       <a href="" class="active">menu</a>
       <a href="{% url 'aboutPage' %}">about</a>
+      
       {% if user.is_authenticated %}
       <a href="{% url 'profilePage' %}">Profile</a>
       {%endif%}
+
 
     </nav>
 

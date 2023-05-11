@@ -165,7 +165,7 @@ def place_order(request):
         for i in cart_items:
             total_quantity += i.quantity
         total = total_quantity
-        total_cost = sum(item.get_total for item in cart_items)
+        total_cost = sum(item.get_total for item in cart_items) + 100
         order = Order.objects.create(user=request.user,delivery_address=address, quantity=total,
                                      total_price = total_cost )
 #        order = Order(delivery_address=address, quantity=total,

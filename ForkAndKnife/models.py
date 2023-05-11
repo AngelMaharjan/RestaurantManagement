@@ -58,7 +58,7 @@ class Order(models.Model):
     quantity = models.IntegerField(default=1)
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
     payment_method = models.CharField(max_length=30, default="Cash on Delivery")
-    delivery_address = models.CharField(max_length=100, default="")
+    delivery_address = models.CharField(max_length=100, null=False, blank=False)
 
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
