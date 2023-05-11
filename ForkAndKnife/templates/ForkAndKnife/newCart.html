@@ -19,6 +19,8 @@
 </head>
 
 <body>
+
+
   <!-- header section -->
   <header>
     <a href="{% url 'homePage'%}" class="logo"><i class="fa-solid fa-utensils"></i>TF&K.</a>
@@ -31,7 +33,14 @@
       <a href="{% url 'cartPage' %}" class="active">My cart</a>
 
     </nav>
-
+    {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
     <div class="icons">
       <i class="fa-solid fa-bars" id="menu-bars"></i>
       <form onsubmit="event.preventDefault();" role="search" class="d-inline">
@@ -42,32 +51,15 @@
 
     </div>
   </header>
+
+
+
   <!-- header section  end-->
   <div class="subko-heading"><h3>Delivery</h3> </div>
   <!-- <div class="container">
     <div class="d-flex justify-content-between gap-3 border">
         <div class="order-photo border border-success border-2">
         </div> -->
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           
             </div>
           </nav>
@@ -83,8 +75,7 @@
             <div class="add-address dark text-center p-2 my-5">
                 <form method="POST" action="/place-order/">
                   {%csrf_token%}
-                  <!--input type="text" placeholder="Add Delivery Address" name="address" required="True"-->
-                  <input type="text" placeholder="Add Delivery Address" name="address">
+                  <input type="text" placeholder="Add Delivery Address" name="address" required="True">
                 
             </div>
             

@@ -157,8 +157,9 @@ def menuDesertList(request):
 
 @login_required
 def place_order(request):
-    if request.method== 'POST':
+    if request.method == 'POST':
         address = request.POST.get('address')
+
         #number = request.POST.get('number')
         cart_items = OrderItem.objects.filter(user=request.user)
         total_quantity = 0
@@ -175,8 +176,9 @@ def place_order(request):
         cart_items.delete()
         messages.success(request, 'Order placed successfully.')
         return redirect('homePage')
-    else:
-        messages.error(request, 'Unable to place order..!!')
+
+    return redirect('cartPage')
+
 
 
 @login_required
