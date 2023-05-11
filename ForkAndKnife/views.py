@@ -219,26 +219,30 @@ def add_to_cart(request, product_id):
 
 @login_required
 def place_order(request):
-    if request.method== 'POST':
+    if request.method == 'POST':
         address = request.POST.get('address')
-        #number = request.POST.get('number')
-        cart_items = OrderItem.objects.filter(user=request.user)
-        total_quantity = 0
-        for i in cart_items:
-            total_quantity += i.quantity
-        total = total_quantity
-        total_cost = sum(item.get_total for item in cart_items)
-        order = Order.objects.create(user=request.user,delivery_address=address, quantity=total,
-                                     total_price = total_cost )
-#        order = Order(delivery_address=address, quantity=total,
- #                      total_price = total_cost )
-       # order.items.set(cart_items)
-        order.save()
-        cart_items.delete()
-        messages.success(request, 'Order placed successfully.')
-        return redirect('homePage')
+        if address:
+            cart_items = OrderItem.objects.filter(user=request.user)
+            total_quantity = 0
+            for item in cart_items:
+                total_quantity += item.quantity
+            total_cost = sum(item.get_total for item in cart_items)
+            order = Order.objects.create(
+                user=request.user,
+                delivery_address=address,
+                quantity=total_quantity,
+                total_price=total_cost
+            )
+            cart_items.delete()
+            messages.success(request, 'Order placed successfully.')
+            return redirect('homePage')
+        else:
+            messages.error(request, 'Please provide a delivery address.')
     else:
-        messages.error(request, 'Unable to place order..!!')
+        messages.error(request, 'Unable to place order.')
+
+    return redirect('cartPage')
+
 
 
 #@login_required
