@@ -49,53 +49,7 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.name
-    
-# 
-# class Cart(models.Model):
-    # user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    # products = models.ManyToManyField(Menu, through='OrderItem')
-    # created_at = models.DateTimeField(auto_now= True,)
-# 
-    # def __str__(self):
-        # return f'{self.user.username} - {self.total_cost}'
-# 
-    # @property
-    # def total_cost(self):
-        # return sum(item.total_price for item in self.order_items.all())
-# 
 
-'''
-class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, default= None)
-    #cart = models.ForeignKey(Cart, on_delete=models.CASCADE, default=None)
-    customer_address = models.CharField(max_length=100)
-   # order_items = models.ManyToManyField('Menu',through='OrderItem')
-    total_price = models.DecimalField(max_digits=6, decimal_places=2)
-    payment_method = models.CharField(max_length=30, default="Cash on Delivery")
-    order_date = models.DateField(auto_now_add=True)
-    
-   # bill = models.OneToOneField('Billing', on_delete=models.CASCADE, null=True)
-
-
-    def __str__(self):
-        return f"Order #{self.id}  - {self.total_price}"
-        
-        '''
-    
-'''
-class OrderItem(models.Model):
-   # cart = models.ForeignKey(Cart, on_delete=models.CASCADE,default=None ,related_name= 'order_items')
-   # order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
-    product = models.ForeignKey(Menu, on_delete=models.CASCADE, default= None)
-    quantity = models.PositiveIntegerField()
-    item_price = models.DecimalField(max_digits=6, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.quantity}x {self.item.name} ({self.item_price})"
-    
-    @property
-    def total_price(self):
-        return self.price * self.quantity '''
 
 
 class Order(models.Model):
@@ -138,34 +92,6 @@ class OrderItem(models.Model):
         total = round (self.item.price * self.quantity)
         return total
 
-'''
-class Billing(models.Model):
-    billing_id = models.AutoField;
-   # orderr = models.ForeignKey(Order, on_delete=models.CASCADE, default="")
-    payment_method = models.CharField(max_length=50)
-    payment_status = models.CharField(max_length=50)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
-    billed_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Billing for Order #{self.orderr.id}"
-    '''
 
 
 
-
-
-
-
-
-
-# 
-# class Cart(models.Model):
-    # user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    # item = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    # quantity = models.PositiveIntegerField(default=1)
-    # special_instructions = models.TextField(blank=True)
-# 
-    # def __str__(self):
-        # return f"{self.quantity} x {self.item} for {self.user}"
-# 
